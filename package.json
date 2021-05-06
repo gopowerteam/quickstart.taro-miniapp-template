@@ -17,6 +17,7 @@
     "build:rn": "taro build --type rn",
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
+    "build:dd": "taro build --type dd",
     "build:quickapp": "taro build --type quickapp",
     "dev:weapp": "npm run build:weapp -- --watch",
     "dev:swan": "npm run build:swan -- --watch",
@@ -26,6 +27,7 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
+    "dev:dd": "npm run build:dd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch"
   },
   "browserslist": [
@@ -49,6 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.0",
     "@tarojs/mini-runner": "3.2.7",
+    "@tarojs/plugin-platform-alipay-dd": "^0.0.4",
     "@tarojs/webpack-runner": "3.2.7",
     "@types/react": "^17.0.2",
     "@types/webpack-env": "^1.13.6",
