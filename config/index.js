@@ -9,7 +9,7 @@ const config = {
   },
   sourceRoot: "src",
   outputRoot: "dist",
-  plugins: ["@tarojs/plugin-platform-alipay-dd"],
+  plugins: ["@tarojs/plugin-platform-alipay-dd", "taro-plugin-tailwind"],
   defineConstants: {},
   copy: {
     patterns: [],
