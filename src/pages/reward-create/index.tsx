@@ -24,12 +24,13 @@ import { DeptStore } from '@/store/dept.store'
 import { CosUtil } from '@/shared/utils/cos.util'
 import { appConfig } from '@/config/app.config'
 import Taro from '@tarojs/taro'
+import { remove } from 'lodash'
 
 const today = new Date()
 const yearList = [today.getFullYear(), today.getFullYear() - 1]
 const monthList = Array.from(
     Array(12),
-    (item, index) => `${(index + 1).toString().padStart(2, '0')}月`
+    (item, index) => `${(index + 1).toString().padStart(2, '0')}`
 )
 const rewardRuleConfigService = new Reward_rule_configService()
 const innerRewardService = new Inner_rewardService()
@@ -57,14 +58,18 @@ export default () => {
         outDepartment: '',
         doctor: '',
         cardType: '',
-        files: []
+        picUrl: []
     })
     const departments = ['综合科', '种植科', '儿牙科', '护理部', '正畸科']
 
     const onSubmit = () => {
         innerRewardService
             .create(
-                new RequestParams({ ...model, month: date.year + date.month })
+                new RequestParams({
+                    ...model,
+                    month: date.year + date.month,
+                    picUrl: model.picUrl.map((x: any) => x.url)
+                })
             )
             .subscribe(data => {
                 Router.back()
@@ -116,7 +121,7 @@ export default () => {
                         </Picker>
                         <Picker
                             mode="selector"
-                            range={monthList}
+                            range={monthList.map(x => x + '月')}
                             onChange={({ detail }) =>
                                 updateDate({ month: monthList[detail.value] })
                             }
@@ -277,42 +282,50 @@ export default () => {
                             extraText={model.clientDeal ? '已成交' : '未成交'}
                         />
                     </Picker>
+                    <AtImagePicker
+                        className="py-1"
+                        multiple
+                        files={model.picUrl}
+                        onChange={(files, type, index) => {
+                            console.log(files, type, index)
+                            if (type === 'add') {
+                                Promise.all(
+                                    files
+                                        .filter(x => x.file)
+                                        .map((file: any) =>
+                                            dd.uploadFile({
+                                                url: `${appConfig.server}/xbt-platform-file-service/api/COSController/fileUpload/xbt-platform-public-1301716714`,
+                                                fileType: 'image',
+                                                fileName: 'file',
+                                                filePath: file.url
+                                            })
+                                        )
+                                ).then(data => {
+                                    const list = data
+                                        .map(x => JSON.parse(x.data))
+                                        .map(x => ({ url: x.url }))
+                                    updateModel({
+                                        picUrl: [...model.picUrl, ...list]
+                                    })
+                                })
+                            }
+
+                            if (type === 'remove') {
+                                const list = model.picUrl
+                                list.splice(index as number, 1)
+                                updateModel({
+                                    picUrl: list
+                                })
+                            }
+                        }}
+                    />
                     <AtTextarea
+                        className="m-1"
                         value={model.memo}
                         onChange={value => updateModel({ memo: value })}
                         maxLength={200}
                         placeholder="备注"
                         count={false}
-                    />
-                    <AtImagePicker
-                        multiple
-                        files={model.files}
-                        onChange={(files: any[]) => {
-                            if (!files || !files.length) {
-                                return
-                            }
-
-                            Promise.all(
-                                files.map((file: any) => {
-                                    const key = `attachments/123123123}`
-
-                                    console.log(key, file)
-                                    dd.uploadFile({
-                                        url: `${appConfig.server}/xbt-platform-file-service/api/COSController/fileUpload/xbt-platform-public-1301716714`,
-                                        fileType: 'image',
-                                        fileName: key,
-                                        formData: {
-                                            key
-                                        },
-                                        filePath: file.url
-                                    })
-                                })
-                            ).then(data => {
-                                console.log(data)
-                            })
-                        }}
-                        onFail={() => {}}
-                        onImageClick={() => {}}
                     />
                 </AtCard>
                 <AtButton

@@ -53,7 +53,7 @@ export default () => {
         }
     }
 
-    useEffect(() => {
+    const getDataSource = () => {
         salaryvalueService
             .mySalary(
                 new RequestParams(
@@ -66,6 +66,10 @@ export default () => {
             .subscribe(data => {
                 setDataSource(data)
             })
+    }
+
+    useEffect(() => {
+        getDataSource()
     }, [])
 
     function onChangeSegment(value) {
@@ -76,17 +80,24 @@ export default () => {
     const segmentView = [SalaryList, PerformanceList]
     const SegmentContent = segmentView[segment]
 
-    const confirmSalary = () =>
+    const confirmSalary = id =>
         salaryInformService
             .confirm(
                 new RequestParams(
                     {},
                     {
-                        append: { month: params.month }
+                        append: { id }
                     }
                 )
             )
-            .subscribe(data => {})
+            .subscribe(data => {
+                getDataSource()
+                Taro.showToast({
+                    title: '确认成功',
+                    icon: 'success',
+                    duration: 2000
+                })
+            })
 
     return (
         <PageContainer>
@@ -101,7 +112,7 @@ export default () => {
                     <AtButton
                         type="primary"
                         className="m-1"
-                        onClick={() => confirmSalary()}
+                        onClick={() => confirmSalary(dataSource.id)}
                         disabled={!confirmState[dataSource.msgStatus].state}
                     >
                         {confirmState[dataSource.msgStatus].text}
