@@ -10,8 +10,7 @@ export class TokenService extends ExtendService {
     const user = Taro.getStorageSync('user')
     if (user && user.userid) {
       params.options.header = params.options.header || {}
-      params.options.header['X-UserID'] = '1864100214788174'
-      // params.options.header['X-UserID'] = user.userid
+      params.options.header['X-UserID'] = user.userid
     }
   }
 }
