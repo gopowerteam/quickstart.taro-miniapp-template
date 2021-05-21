@@ -26,6 +26,15 @@ export class DepartmentService {
         return requestParams.request()
     }
     /**
+     * 查询所有分院
+     */
+    @Request({
+        server: DepartmentController.getBranches
+    })
+    public getBranches(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * 使用ID查询子部门
      */
     @Request({
@@ -41,6 +50,15 @@ export class DepartmentService {
         server: DepartmentController.getDepts
     })
     public getDepts(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 查询部门所在分院
+     */
+    @Request({
+        server: DepartmentController.getMyBranch
+    })
+    public getMyBranch(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

@@ -1,6 +1,10 @@
 export default {
   pages: [
-    'pages/index/index'
+    'pages/index/index',
+    'pages/salary/index',
+    'pages/information/index',
+    'pages/reward/index',
+    'pages/reward-create/index'
   ],
   window: {
     backgroundTextStyle: 'light',

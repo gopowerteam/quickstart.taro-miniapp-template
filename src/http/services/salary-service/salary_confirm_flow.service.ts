@@ -35,7 +35,7 @@ export class Salary_confirm_flowService {
         return requestParams.request()
     }
     /**
-     * 审批列表
+     * 审批员工列表
      */
     @Request({
         server: Salary_confirm_flowController.getAllConfirm
@@ -44,12 +44,21 @@ export class Salary_confirm_flowService {
         return requestParams.request()
     }
     /**
-     * 我的流程
+     * 我的流程规则
      */
     @Request({
-        server: Salary_confirm_flowController.getList
+        server: Salary_confirm_flowController.getMyFlowConfig
     })
-    public getList(requestParams: RequestParams): Observable<any> {
+    public getMyFlowConfig(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 我的审批流程
+     */
+    @Request({
+        server: Salary_confirm_flowController.getMySalaryConfirmFlow
+    })
+    public getMySalaryConfirmFlow(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

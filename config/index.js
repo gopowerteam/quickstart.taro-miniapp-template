@@ -3,7 +3,7 @@ import path from 'path'
 const config = {
     projectName: 'taro-react-weapp',
     date: '2021-5-6',
-    designWidth: 750,
+    designWidth: 828,
     deviceRatio: {
         640: 2.34 / 2,
         750: 1,

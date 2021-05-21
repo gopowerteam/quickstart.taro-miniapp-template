@@ -9,7 +9,7 @@ const controller = 'employee'
 const service = 'xbt-platform-dingtalk-service'
 
 export const EmployeeController = {
-    // 查询全部员工
+    // 查询全部员工(在职)
     getAll: {
         service,
         controller,

@@ -8,7 +8,7 @@ import { EmployeeController } from '../../controller/dingtalk-service/employee.c
 
 export class EmployeeService {
     /**
-     * 查询全部员工
+     * 查询全部员工(在职)
      */
     @Request({
         server: EmployeeController.getAll

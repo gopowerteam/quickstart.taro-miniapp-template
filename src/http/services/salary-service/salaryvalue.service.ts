@@ -62,12 +62,21 @@ export class SalaryvalueService {
         return requestParams.request()
     }
     /**
-     * 我的工资
+     * 我的月份工资
      */
     @Request({
         server: SalaryvalueController.mySalary
     })
     public mySalary(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 我的工资列表
+     */
+    @Request({
+        server: SalaryvalueController.mySalaryList
+    })
+    public mySalaryList(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

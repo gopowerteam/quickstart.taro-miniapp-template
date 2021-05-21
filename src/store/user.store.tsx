@@ -1,9 +1,15 @@
 import { useLocalStorageState } from 'ahooks'
-import React from 'react'
-import { Provider } from 'reto'
+import React, { useState } from 'react'
+import { Provider, useStore } from 'reto'
+import Taro from '@tarojs/taro'
 
 export function UserStore() {
-    const [current, setCurrent] = useLocalStorageState('current', null)
+    const [current, updateCurrent] = useState()
+
+    const setCurrent = user => {
+        updateCurrent(user)
+        Taro.setStorageSync('user', user)
+    }
 
     return {
         current,

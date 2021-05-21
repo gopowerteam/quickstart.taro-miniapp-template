@@ -26,7 +26,7 @@ export class Reward_rule_configService {
         return requestParams.request()
     }
     /**
-     * get All
+     * 所有奖励规则
      */
     @Request({
         server: Reward_rule_configController.getAll
@@ -44,12 +44,21 @@ export class Reward_rule_configService {
         return requestParams.request()
     }
     /**
-     * get List
+     * 所有奖励规则
      */
     @Request({
         server: Reward_rule_configController.getList
     })
     public getList(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 获取分院规则
+     */
+    @Request({
+        server: Reward_rule_configController.getBranchList
+    })
+    public getBranchList(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

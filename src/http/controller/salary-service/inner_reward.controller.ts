@@ -57,12 +57,36 @@ export const Inner_rewardController = {
         action: 'getAll',
         type: RequestMethod.Get
     },
+    // 审批历史列表
+    getAuditList: {
+        service,
+        controller,
+        path: '/api/inner_reward/getAuditList/{id}',
+        action: 'getAuditList',
+        type: RequestMethod.Get
+    },
+    // findOne
+    get: {
+        service,
+        controller,
+        path: '/api/inner_reward/getById/{id}',
+        action: 'get',
+        type: RequestMethod.Get
+    },
     // get List
     getList: {
         service,
         controller,
         path: '/api/inner_reward/getList',
         action: 'getList',
+        type: RequestMethod.Get
+    },
+    // 我的所有申请
+    getMyList: {
+        service,
+        controller,
+        path: '/api/inner_reward/getMyList',
+        action: 'getMyList',
         type: RequestMethod.Get
     },
     // update

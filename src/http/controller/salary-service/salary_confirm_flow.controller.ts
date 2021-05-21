@@ -33,20 +33,28 @@ export const Salary_confirm_flowController = {
         action: 'deny',
         type: RequestMethod.Post
     },
-    // 审批列表
+    // 审批员工列表
     getAllConfirm: {
         service,
         controller,
-        path: '/api/salary_confirm_flow/getAllAudit',
+        path: '/api/salary_confirm_flow/getAllAudit/{id}',
         action: 'getAllConfirm',
         type: RequestMethod.Get
     },
-    // 我的流程
-    getList: {
+    // 我的流程规则
+    getMyFlowConfig: {
         service,
         controller,
-        path: '/api/salary_confirm_flow/getMyFlow',
-        action: 'getList',
+        path: '/api/salary_confirm_flow/getMyFlowConfig',
+        action: 'getMyFlowConfig',
+        type: RequestMethod.Get
+    },
+    // 我的审批流程
+    getMySalaryConfirmFlow: {
+        service,
+        controller,
+        path: '/api/salary_confirm_flow/getMySalaryConfirmFlow',
+        action: 'getMySalaryConfirmFlow',
         type: RequestMethod.Get
     }
 }

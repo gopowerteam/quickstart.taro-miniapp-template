@@ -62,12 +62,39 @@ export class Inner_rewardService {
         return requestParams.request()
     }
     /**
+     * 审批历史列表
+     */
+    @Request({
+        server: Inner_rewardController.getAuditList
+    })
+    public getAuditList(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * findOne
+     */
+    @Request({
+        server: Inner_rewardController.get
+    })
+    public get(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * get List
      */
     @Request({
         server: Inner_rewardController.getList
     })
     public getList(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 我的所有申请
+     */
+    @Request({
+        server: Inner_rewardController.getMyList
+    })
+    public getMyList(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

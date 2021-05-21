@@ -25,6 +25,14 @@ export const DepartmentController = {
         action: 'getAllWx',
         type: RequestMethod.Get
     },
+    // 查询所有分院
+    getBranches: {
+        service,
+        controller,
+        path: '/api/department/getBranches',
+        action: 'getBranches',
+        type: RequestMethod.Get
+    },
     // 使用ID查询子部门
     getChildrenById: {
         service,
@@ -39,6 +47,14 @@ export const DepartmentController = {
         controller,
         path: '/api/department/getDepts/{ids}',
         action: 'getDepts',
+        type: RequestMethod.Get
+    },
+    // 查询部门所在分院
+    getMyBranch: {
+        service,
+        controller,
+        path: '/api/department/getMyBranch/{id}',
+        action: 'getMyBranch',
         type: RequestMethod.Get
     },
     // 同步全部部门

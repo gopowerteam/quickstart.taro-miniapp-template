@@ -8,6 +8,15 @@ import { EmployeeBasicInfoController } from '../../controller/salary-service/emp
 
 export class EmployeeBasicInfoService {
     /**
+     * 钉钉服务回调员工离职
+     */
+    @Request({
+        server: EmployeeBasicInfoController.employeeLeaveCallBack
+    })
+    public employeeLeaveCallBack(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * 查询全部
      */
     @Request({

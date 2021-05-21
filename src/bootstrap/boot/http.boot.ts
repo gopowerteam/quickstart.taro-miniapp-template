@@ -1,20 +1,21 @@
 
 // import { TokenService } from '../http/token.service'
-import mpAdapter from 'axios-miniprogram-adapter'
+import adapter from '@/bootstrap/http/adapter/dingtalk.adapter'
 import { RequestService } from "@gopowerteam/http-request"
 import { appConfig } from '@/config/app.config'
+import { TokenService } from '../http/services/token.service'
 
 export default function () {
   // 配置服务端信息
   RequestService.setConfig({
     server: appConfig.server,
     timeout: 10000,
-    adapter: mpAdapter
+    adapter: adapter
   })
 
   // 添加状态拦截器
   RequestService.interceptors.status.use(respone => {
-    return true
+    return respone.status === 200
   })
 
   // 添加成功拦截器
@@ -54,5 +55,5 @@ export default function () {
   }
 
   // 安装Token认证服务
-  // RequestService.installExtendService(new TokenService())
+  RequestService.installExtendService(new TokenService())
 }

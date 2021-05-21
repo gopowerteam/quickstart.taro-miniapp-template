@@ -9,6 +9,14 @@ const controller = 'employee-basic-info'
 const service = 'xbt-platform-salary-service'
 
 export const EmployeeBasicInfoController = {
+    // 钉钉服务回调员工离职
+    employeeLeaveCallBack: {
+        service,
+        controller,
+        path: '/api/employeeBasicInfo/employeeLeaveCallBack/{id}',
+        action: 'employeeLeaveCallBack',
+        type: RequestMethod.Put
+    },
     // 查询全部
     getAll: {
         service,

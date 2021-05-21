@@ -57,12 +57,20 @@ export const SalaryvalueController = {
         action: 'get',
         type: RequestMethod.Get
     },
-    // 我的工资
+    // 我的月份工资
     mySalary: {
         service,
         controller,
         path: '/api/salaryvalue/mySalary/{month}',
         action: 'mySalary',
+        type: RequestMethod.Get
+    },
+    // 我的工资列表
+    mySalaryList: {
+        service,
+        controller,
+        path: '/api/salaryvalue/mySalaryList',
+        action: 'mySalaryList',
         type: RequestMethod.Get
     },
     // update
