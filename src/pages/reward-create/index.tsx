@@ -47,7 +47,7 @@ export default () => {
         clientPhone: '',
         clientResumeNo: '',
         amount: 0,
-        clientDeal: true,
+        clientDeal: false,
         rewardRuleId: '',
         rewardRuleName: '',
         rewardRuleType: '',
@@ -273,7 +273,9 @@ export default () => {
                         mode="selector"
                         range={['未成交', '已成交']}
                         onChange={({ detail }) => {
-                            updateModel({ clientDeal: detail.value === 1 })
+                            updateModel({
+                                clientDeal: [false, true][detail.value]
+                            })
                         }}
                     >
                         <AtListItem
@@ -287,7 +289,6 @@ export default () => {
                         multiple
                         files={model.picUrl}
                         onChange={(files, type, index) => {
-                            console.log(files, type, index)
                             if (type === 'add') {
                                 Promise.all(
                                     files
