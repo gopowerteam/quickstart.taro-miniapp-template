@@ -7,7 +7,7 @@ import {
     AtListItem,
     AtSegmentedControl
 } from 'taro-ui'
-import { Text } from '@tarojs/components'
+import { Text, View } from '@tarojs/components'
 
 import Taro from '@tarojs/taro'
 import 'taro-ui/dist/style/components/button.scss' // 按需引入
@@ -29,6 +29,7 @@ export default () => {
     const userStore = useStore(UserStore)
     const [segment, setSegment] = useState(0)
     const [dataSource, setDataSource] = useState<any[]>([])
+    const [openState, updateOpenState] = useState<any>({})
 
     const getDataSource = () => {
         innerRewardService.getMyList(new RequestParams()).subscribe(data => {
@@ -42,6 +43,14 @@ export default () => {
 
     const onChangeSegment = value => {
         setSegment(value)
+        updateOpenState({})
+    }
+
+    const onChangeOpen = month => {
+        updateOpenState({
+            ...openState,
+            [month]: !openState[month]
+        })
     }
 
     const onSubmit = id => {
@@ -78,57 +87,68 @@ export default () => {
                 current={segment}
                 onClick={onChangeSegment}
             ></AtSegmentedControl>
-            {list && list.length ? (
-                Object.entries(groupBy(list, 'month')).map(([key, values]) => (
-                    <AtAccordion isAnimation={false} title={key}>
-                        {values.map(item => (
-                            <AtList
-                                hasBorder
-                                className="my-2 border border-solid rounded"
+            <View className="pb-10">
+                {list && list.length ? (
+                    Object.entries(groupBy(list, 'month')).map(
+                        ([key, values]) => (
+                            <AtAccordion
+                                open={openState[key]}
+                                onClick={() => onChangeOpen(key)}
+                                isAnimation={false}
+                                title={key}
                             >
-                                <AtListItem
-                                    title="奖励类型"
-                                    extraText={item.rewardRuleName}
-                                />
-                                <AtListItem
-                                    title="日期"
-                                    extraText={item.month}
-                                />
-                                <AtListItem
-                                    title="客户姓名"
-                                    extraText={item.clientName}
-                                />
-                                <AtListItem
-                                    title="消费金额"
-                                    extraText={`${item.amount / 100}元`}
-                                />
-                                <AtListItem
-                                    title="申报状态"
-                                    extraText={item.type}
-                                />
-                                <AtListItem
-                                    title="奖励金额"
-                                    extraText={`${item.reward / 100}元`}
-                                />
-                                {segment === 0 && (
-                                    <AtButton
-                                        size="small"
-                                        className="my-1"
-                                        type="primary"
-                                        onClick={() => onSubmit(item.id)}
+                                {values.map(item => (
+                                    <AtList
+                                        hasBorder
+                                        className="my-2 border border-solid rounded"
                                     >
-                                        申报
-                                    </AtButton>
-                                )}
-                            </AtList>
-                        ))}
-                    </AtAccordion>
-                ))
-            ) : (
-                <Empty></Empty>
-            )}
+                                        <AtListItem
+                                            title="奖励类型"
+                                            extraText={item.rewardRuleName}
+                                        />
+                                        <AtListItem
+                                            title="日期"
+                                            extraText={item.month}
+                                        />
+                                        <AtListItem
+                                            title="客户姓名"
+                                            extraText={item.clientName}
+                                        />
+                                        <AtListItem
+                                            title="消费金额"
+                                            extraText={`${item.amount / 100}元`}
+                                        />
+                                        <AtListItem
+                                            title="申报状态"
+                                            extraText={item.type}
+                                        />
+                                        <AtListItem
+                                            title="奖励金额"
+                                            extraText={`${item.reward / 100}元`}
+                                        />
+                                        {segment === 0 && (
+                                            <AtButton
+                                                size="small"
+                                                className="my-1"
+                                                type="primary"
+                                                onClick={() =>
+                                                    onSubmit(item.id)
+                                                }
+                                            >
+                                                申报
+                                            </AtButton>
+                                        )}
+                                    </AtList>
+                                ))}
+                            </AtAccordion>
+                        )
+                    )
+                ) : (
+                    <Empty></Empty>
+                )}
+            </View>
             <AtFab
-                className="absolute bottom-1 right-1"
+                className="fixed bottom-1 right-1"
                 onClick={() => {
                     Router.toRewardCreate().then(() => {
                         getDataSource()
