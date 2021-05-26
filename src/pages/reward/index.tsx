@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import {
+    AtAccordion,
     AtButton,
     AtFab,
     AtList,
@@ -20,6 +21,7 @@ import Router from 'tarojs-router-next'
 import { Inner_rewardService } from '@/http/services/salary-service/inner_reward.service'
 import { RequestParams } from '@gopowerteam/http-request'
 import { Empty } from '@/shared/components/empty'
+import { groupBy } from '@/shared/utils/common.util'
 
 const innerRewardService = new Inner_rewardService()
 
@@ -47,6 +49,7 @@ export default () => {
             .apply(new RequestParams({}, { append: { id } }))
             .subscribe({
                 next: data => {
+                    // 更新数据源
                     getDataSource()
                     Taro.showToast({
                         title: '已提交申报',
@@ -76,40 +79,50 @@ export default () => {
                 onClick={onChangeSegment}
             ></AtSegmentedControl>
             {list && list.length ? (
-                list.map(item => (
-                    <AtList
-                        hasBorder
-                        className="my-2 border border-solid rounded"
-                    >
-                        <AtListItem
-                            title="奖励类型"
-                            extraText={item.rewardRuleName}
-                        />
-                        <AtListItem title="日期" extraText={item.month} />
-                        <AtListItem
-                            title="客户姓名"
-                            extraText={item.clientName}
-                        />
-                        <AtListItem
-                            title="消费金额"
-                            extraText={`${item.amount / 100}元`}
-                        />
-                        <AtListItem title="申报状态" extraText={item.type} />
-                        <AtListItem
-                            title="奖励金额"
-                            extraText={`${item.reward / 100}元`}
-                        />
-                        {segment === 0 && (
-                            <AtButton
-                                size="small"
-                                className="my-1"
-                                type="primary"
-                                onClick={() => onSubmit(item.id)}
+                Object.entries(groupBy(list, 'month')).map(([key, values]) => (
+                    <AtAccordion isAnimation={false} title={key}>
+                        {values.map(item => (
+                            <AtList
+                                hasBorder
+                                className="my-2 border border-solid rounded"
                             >
-                                申报
-                            </AtButton>
-                        )}
-                    </AtList>
+                                <AtListItem
+                                    title="奖励类型"
+                                    extraText={item.rewardRuleName}
+                                />
+                                <AtListItem
+                                    title="日期"
+                                    extraText={item.month}
+                                />
+                                <AtListItem
+                                    title="客户姓名"
+                                    extraText={item.clientName}
+                                />
+                                <AtListItem
+                                    title="消费金额"
+                                    extraText={`${item.amount / 100}元`}
+                                />
+                                <AtListItem
+                                    title="申报状态"
+                                    extraText={item.type}
+                                />
+                                <AtListItem
+                                    title="奖励金额"
+                                    extraText={`${item.reward / 100}元`}
+                                />
+                                {segment === 0 && (
+                                    <AtButton
+                                        size="small"
+                                        className="my-1"
+                                        type="primary"
+                                        onClick={() => onSubmit(item.id)}
+                                    >
+                                        申报
+                                    </AtButton>
+                                )}
+                            </AtList>
+                        ))}
+                    </AtAccordion>
                 ))
             ) : (
                 <Empty></Empty>
