@@ -1,5 +1,6 @@
 export default {
   pages: [
+    'pages/bootstrap/index',
     'pages/index/index',
     'pages/salary/index',
     'pages/information/index',

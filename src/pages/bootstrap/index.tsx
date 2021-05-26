@@ -1,27 +1,29 @@
 import React, { useEffect } from 'react'
 import { useStore } from 'reto'
-import { AppStore } from './store/app.store'
+import { AppStore } from '../../store/app.store'
 import 'taro-ui/dist/style/components/load-more.scss'
 import 'taro-ui/dist/style/components/activity-indicator.scss'
 import 'taro-ui/dist/style/components/button.scss'
-import { boot } from './bootstrap/boot'
+import { boot } from '../../bootstrap/boot'
 import { AuthService } from '@/http/services/dingtalk-service/auth.service'
 import { RequestParams } from '@gopowerteam/http-request'
 import { appConfig } from '@/config/app.config'
-import { UserStore } from './store/user.store'
+import { UserStore } from '../../store/user.store'
 import { catchError, switchMap } from 'rxjs/operators'
-import { EmployeeService } from './http/services/dingtalk-service/employee.service'
-import { DepartmentService } from './http/services/dingtalk-service/department.service'
-import { DeptStore } from './store/dept.store'
+import { EmployeeService } from '../../http/services/dingtalk-service/employee.service'
+import { DepartmentService } from '../../http/services/dingtalk-service/department.service'
+import { DeptStore } from '../../store/dept.store'
 import { AtMessage } from 'taro-ui'
 import Taro from '@tarojs/taro'
-import { firstValueFrom, lastValueFrom, from } from 'rxjs'
+import { lastValueFrom, from } from 'rxjs'
+import { AtActivityIndicator } from 'taro-ui'
+import Router from 'tarojs-router-next'
 
 const authService = new AuthService()
 const employeeService = new EmployeeService()
 const departmentService = new DepartmentService()
 
-export const BootStrap = props => {
+export default props => {
     const store = useStore(AppStore)
     const userStore = useStore(UserStore)
     const deptStore = useStore(DeptStore)
@@ -45,6 +47,14 @@ export const BootStrap = props => {
                 )
             )
 
+        const replaceUserID = id => {
+            const target = {
+                '021926232927258548': '1864100214788174',
+                '316469192621613595': '111629236737878375'
+            }[id]
+
+            return target || id
+        }
         // 通过用户id获取用户数据
         const getUserInfoById = userid =>
             employeeService.getById(
@@ -52,11 +62,11 @@ export const BootStrap = props => {
                     {},
                     // TODO TEST
                     // { append: { id: data.userid } }
-                    { append: { id: 1864100214788174 } }
+                    { append: { id: replaceUserID(userid) } }
                 )
             )
 
-        return firstValueFrom(
+        return lastValueFrom(
             from(dd.getAuthCode() as Promise<any>).pipe(
                 switchMap(({ authCode }) => getUserIdByCode(authCode)),
                 switchMap(({ userid }) => getUserInfoById(userid)),
@@ -74,7 +84,7 @@ export const BootStrap = props => {
     }
 
     function getDeptList() {
-        return firstValueFrom(
+        return lastValueFrom(
             departmentService.getAll(new RequestParams())
         ).then(data => {
             deptStore.setDeptList(data)
@@ -97,6 +107,8 @@ export const BootStrap = props => {
         await launch()
 
         store.updateReady()
+
+        Router.toIndex()
     }
 
     useEffect(() => {
@@ -106,7 +118,7 @@ export const BootStrap = props => {
     return (
         <>
             <AtMessage />
-            {props.children}
+            <AtActivityIndicator size={100} mode="center"></AtActivityIndicator>
         </>
     )
 }

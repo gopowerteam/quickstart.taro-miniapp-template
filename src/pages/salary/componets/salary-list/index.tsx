@@ -24,10 +24,6 @@ export const SalaryList = props => {
             <AtCard title="薪资统计" className="my-1">
                 <AtList>
                     <AtListItem
-                        title="实发工资"
-                        extraText={`${finalFinalIncome / 100}元`}
-                    />
-                    <AtListItem
                         title="固定工资"
                         extraText={`${fixedSalary / 100}元`}
                     />
@@ -43,6 +39,10 @@ export const SalaryList = props => {
                     <AtListItem
                         title="合计薪资"
                         extraText={`${totalSalary / 100}元`}
+                    />
+                    <AtListItem
+                        title="实发工资"
+                        extraText={`${finalFinalIncome / 100}元`}
                     />
                 </AtList>
             </AtCard>

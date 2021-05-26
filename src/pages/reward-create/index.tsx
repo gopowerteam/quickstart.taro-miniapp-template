@@ -21,10 +21,8 @@ import { RequestParams } from '@gopowerteam/http-request'
 import { Inner_rewardService } from '@/http/services/salary-service/inner_reward.service'
 import Router from 'tarojs-router-next'
 import { DeptStore } from '@/store/dept.store'
-import { CosUtil } from '@/shared/utils/cos.util'
 import { appConfig } from '@/config/app.config'
 import Taro from '@tarojs/taro'
-import { remove } from 'lodash'
 
 const today = new Date()
 const yearList = [today.getFullYear(), today.getFullYear() - 1]
@@ -46,7 +44,7 @@ export default () => {
         clientName: '',
         clientPhone: '',
         clientResumeNo: '',
-        amount: 0,
+        amount: '',
         clientDeal: false,
         rewardRuleId: '',
         rewardRuleName: '',
@@ -63,16 +61,23 @@ export default () => {
     const departments = ['综合科', '种植科', '儿牙科', '护理部', '正畸科']
 
     const onSubmit = () => {
+        Taro.showLoading()
         innerRewardService
             .create(
                 new RequestParams({
                     ...model,
+                    amount: parseFloat(model.amount || '0') * 100,
                     month: date.year + date.month,
                     picUrl: model.picUrl.map((x: any) => x.url)
                 })
             )
-            .subscribe(data => {
-                Router.back()
+            .subscribe({
+                next: data => {
+                    Router.back()
+                },
+                complete: () => {
+                    Taro.hideLoading()
+                }
             })
     }
 
@@ -177,6 +182,19 @@ export default () => {
                         onChange={value =>
                             updateModel({ clientResumeNo: value })
                         }
+                    />
+                    <AtInput
+                        required
+                        name="amount"
+                        title="消费金额"
+                        type="number"
+                        placeholder="消费金额"
+                        value={model.amount}
+                        onChange={value => {
+                            updateModel({
+                                amount: parseFloat(value.toString()).toString()
+                            })
+                        }}
                     />
                     {model.rewardRuleType === '陪伴人开发' && (
                         <AtInput

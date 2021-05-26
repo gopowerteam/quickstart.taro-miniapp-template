@@ -1,8 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import {
     AtButton,
-    AtCard,
-    AtDivider,
     AtFab,
     AtList,
     AtListItem,
@@ -21,7 +19,6 @@ import { PageContainer } from '@/shared/components/page-container'
 import Router from 'tarojs-router-next'
 import { Inner_rewardService } from '@/http/services/salary-service/inner_reward.service'
 import { RequestParams } from '@gopowerteam/http-request'
-import { groupBy } from '@/shared/utils/common.util'
 import { Empty } from '@/shared/components/empty'
 
 const innerRewardService = new Inner_rewardService()
@@ -80,7 +77,10 @@ export default () => {
             ></AtSegmentedControl>
             {list && list.length ? (
                 list.map(item => (
-                    <AtList hasBorder className="my-1 border">
+                    <AtList
+                        hasBorder
+                        className="my-2 border border-solid rounded"
+                    >
                         <AtListItem
                             title="奖励类型"
                             extraText={item.rewardRuleName}
@@ -90,7 +90,15 @@ export default () => {
                             title="客户姓名"
                             extraText={item.clientName}
                         />
+                        <AtListItem
+                            title="消费金额"
+                            extraText={`${item.amount / 100}元`}
+                        />
                         <AtListItem title="申报状态" extraText={item.type} />
+                        <AtListItem
+                            title="奖励金额"
+                            extraText={`${item.reward / 100}元`}
+                        />
                         {segment === 0 && (
                             <AtButton
                                 size="small"

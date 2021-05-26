@@ -4,14 +4,11 @@ import 'windi.css'
 import React from 'react'
 import { Provider } from './store'
 import { Router } from './router'
-import { BootStrap } from './bootstrap'
 
 export default props => {
     return (
         <Provider>
-            <Router>
-                <BootStrap>{props.children}</BootStrap>
-            </Router>
+            <Router>{props.children}</Router>
         </Provider>
     )
 }
