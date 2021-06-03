@@ -1,12 +1,5 @@
 import React, { Component, useEffect, useState } from 'react'
-import { View, Text } from '@tarojs/components'
-import {
-    AtAvatar,
-    AtButton,
-    AtList,
-    AtListItem,
-    AtSegmentedControl
-} from 'taro-ui'
+import { AtSegmentedControl } from 'taro-ui'
 
 import 'taro-ui/dist/style/components/button.scss' // 按需引入
 import './index.styl'

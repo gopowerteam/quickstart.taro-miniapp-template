@@ -9,7 +9,7 @@ export default function () {
   // 配置服务端信息
   RequestService.setConfig({
     server: appConfig.server,
-    timeout: 10000,
+    timeout: 30000,
     adapter: adapter
   })
 

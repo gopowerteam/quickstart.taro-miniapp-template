@@ -14,7 +14,8 @@ export const SalaryList = props => {
         ss,
         tax,
         totalSalary,
-        varianceSalary
+        varianceSalary,
+        thresholdAdjust
     } = props.data
 
     const groups = groupBy(valueList, 'category')
@@ -30,6 +31,10 @@ export const SalaryList = props => {
                     <AtListItem
                         title="变动工资"
                         extraText={`${varianceSalary / 100}元`}
+                    />
+                    <AtListItem
+                        title="保底调整"
+                        extraText={`${thresholdAdjust / 100}元`}
                     />
                     <AtListItem title="社保代扣" extraText={`${ss / 100}元`} />
                     <AtListItem

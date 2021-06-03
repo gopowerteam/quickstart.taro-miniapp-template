@@ -45,7 +45,7 @@ function encoder(input) {
  * 获取各个平台的请求函数
  */
 function getRequest() {
-  return (my && my.httpRequest.bind(my)) || (dd && dd.httpRequest.bind(dd))
+  return (dd && dd.httpRequest.bind(dd)) || (my && my.httpRequest.bind(my))
 }
 /**
  * 处理各平台返回的响应数据，抹平差异

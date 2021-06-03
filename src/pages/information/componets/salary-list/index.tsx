@@ -7,13 +7,30 @@ import './index.styl'
 import { groupBy } from '@/shared/utils/common.util'
 
 export const SalaryList = props => {
-    const { fixedItemList } = props.data
+    const { data } = props
+    const { fixedItemList } = data
 
     const groups = groupBy(fixedItemList, 'category')
     return (
-        <>
+        <View className="py-1">
+            <AtCard title="基础信息">
+                <AtList>
+                    <AtListItem
+                        title="员工姓名"
+                        extraText={data.employeeName}
+                    ></AtListItem>
+                    <AtListItem
+                        title="保底类型"
+                        extraText={data.thresholdType}
+                    ></AtListItem>
+                    <AtListItem
+                        title="保底工资"
+                        extraText={`${data.threshold / 100}元`}
+                    ></AtListItem>
+                </AtList>
+            </AtCard>
             {Object.entries(groups).map(([title, items]) => (
-                <AtCard title={title} className="my-1">
+                <AtCard title={title} className="mt-1">
                     <AtList>
                         {items.map(item => (
                             <AtListItem
@@ -24,6 +41,6 @@ export const SalaryList = props => {
                     </AtList>
                 </AtCard>
             ))}
-        </>
+        </View>
     )
 }
