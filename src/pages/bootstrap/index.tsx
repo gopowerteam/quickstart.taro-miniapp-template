@@ -125,7 +125,7 @@ export default props => {
 
     // 启动逻辑
     function launch() {
-        update()
+        // update()
         return Promise.all([userLogin(), getDeptList()])
     }
 
