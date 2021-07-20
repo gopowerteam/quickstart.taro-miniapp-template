@@ -12,7 +12,7 @@ const config = {
     sourceRoot: 'src',
     outputRoot: 'dist',
     plugins: [
-        '@tarojs/plugin-platform-alipay-dd',
+        // '@tarojs/plugin-platform-alipay-dd',
         'taro-plugin-tailwind',
         'tarojs-router-next-plugin'
     ],
@@ -66,7 +66,7 @@ const config = {
     }
 }
 
-module.exports = function(merge) {
+module.exports = function (merge) {
     if (process.env.NODE_ENV === 'development') {
         return merge({}, config, require('./dev'))
     }
