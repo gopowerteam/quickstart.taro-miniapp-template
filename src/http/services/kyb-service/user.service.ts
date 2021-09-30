@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { UserController } from '../../controller/kyb-service/user.controller'
 
 export class UserService {

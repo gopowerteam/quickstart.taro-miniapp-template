@@ -15,7 +15,7 @@ export const Employee_attendanceController = {
         controller,
         path: '/api/employee_attendance/getAll',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne
     getByEmployee: {

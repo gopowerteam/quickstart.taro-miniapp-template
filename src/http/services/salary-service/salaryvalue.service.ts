@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { SalaryvalueController } from '../../controller/salary-service/salaryvalue.controller'
 
 export class SalaryvalueService {
@@ -32,6 +32,24 @@ export class SalaryvalueService {
         server: SalaryvalueController.create
     })
     public create(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * create for team
+     */
+    @Request({
+        server: SalaryvalueController.create4team
+    })
+    public create4team(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * create for rules
+     */
+    @Request({
+        server: SalaryvalueController.createForRules
+    })
+    public createForRules(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**
@@ -77,6 +95,15 @@ export class SalaryvalueService {
         server: SalaryvalueController.mySalaryList
     })
     public mySalaryList(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * specify
+     */
+    @Request({
+        server: SalaryvalueController.specify
+    })
+    public specify(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

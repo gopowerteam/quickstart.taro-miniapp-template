@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { SMSControllerController } from '../../controller/kyb-service/s-m-s-controller.controller'
 
 export class SMSControllerService {
@@ -11,9 +11,9 @@ export class SMSControllerService {
      * 发送一个后台不验证的验证码
      */
     @Request({
-        server: SMSControllerController.orderRefund
+        server: SMSControllerController.sendSMSCode
     })
-    public orderRefund(requestParams: RequestParams): Observable<any> {
+    public sendSMSCode(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

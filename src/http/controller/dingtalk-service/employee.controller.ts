@@ -65,12 +65,76 @@ export const EmployeeController = {
         action: 'getLocalById',
         type: RequestMethod.Get
     },
-    // 同步全部员工
-    syncAllEmployee: {
+    // 使用ID查询数据库中的同步员工和他所在的所有父部门
+    getLocalByIdAndAllDepartment: {
         service,
         controller,
-        path: '/api/employee/syncAllEmployee',
-        action: 'syncAllEmployee',
-        type: RequestMethod.Put
+        path: '/api/employee/getLocalByIdAndAllDepartment/{id}',
+        action: 'getLocalByIdAndAllDepartment',
+        type: RequestMethod.Get
+    },
+    // 使用部门ID查询员工列表包含子部门
+    getLocalEmployeesByDepartmentId: {
+        service,
+        controller,
+        path: '/api/employee/getLocalEmployeesByDepartmentId/{id}',
+        action: 'getLocalEmployeesByDepartmentId',
+        type: RequestMethod.Get
+    },
+    // 测试查看下一个工号
+    getNextJobNumber: {
+        service,
+        controller,
+        path: '/api/employee/getNextJobNumber',
+        action: 'getNextJobNumber',
+        type: RequestMethod.Get
+    },
+    // 重新初始化所有员工的工号
+    initAllJobNumber: {
+        service,
+        controller,
+        path: '/api/employee/initAllJobNumber',
+        action: 'initAllJobNumber',
+        type: RequestMethod.Post
+    },
+    // 通过姓名查询员工
+    queryByName: {
+        service,
+        controller,
+        path: '/api/employee/queryByName',
+        action: 'queryByName',
+        type: RequestMethod.Get
+    },
+    // 使用部门ID查询员工列表包含子部门
+    queryEmployee: {
+        service,
+        controller,
+        path: '/api/employee/queryEmployee',
+        action: 'queryEmployee',
+        type: RequestMethod.Get
+    },
+    // 通过部门列表查询员工
+    queryEmployeesByeDepartments: {
+        service,
+        controller,
+        path: '/api/employee/queryEmployeesByeDepartments',
+        action: 'queryEmployeesByeDepartments',
+        type: RequestMethod.Post
+    },
+    // 重新生成员工工号（累加）
+    reSetJobNumber: {
+        service,
+        controller,
+        path: '/api/employee/reSetJobNumber/{id}',
+        action: 'reSetJobNumber',
+        type: RequestMethod.Post
+    },
+    // 设置工号
+    setJobNumber: {
+        service,
+        controller,
+        path: '/api/employee/setJobNumber/{id}',
+        action: 'setJobNumber',
+        type: RequestMethod.Post
     }
 }

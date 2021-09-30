@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { MonthBonusController } from '../../controller/salary-service/month-bonus.controller'
 
 export class MonthBonusService {
@@ -23,6 +23,33 @@ export class MonthBonusService {
         server: MonthBonusController.delete
     })
     public delete(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * getDetail
+     */
+    @Request({
+        server: MonthBonusController.getDetail
+    })
+    public getDetail(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * import excel
+     */
+    @Request({
+        server: MonthBonusController.import
+    })
+    public import(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * updateDomain
+     */
+    @Request({
+        server: MonthBonusController.updateDomain
+    })
+    public updateDomain(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { Reward_rule_configController } from '../../controller/salary-service/reward_rule_config.controller'
 
 export class Reward_rule_configService {
@@ -26,7 +26,7 @@ export class Reward_rule_configService {
         return requestParams.request()
     }
     /**
-     * 所有奖励规则
+     * 服务端奖励规则
      */
     @Request({
         server: Reward_rule_configController.getAll
@@ -44,21 +44,12 @@ export class Reward_rule_configService {
         return requestParams.request()
     }
     /**
-     * 所有奖励规则
+     * 小程序奖励规则
      */
     @Request({
         server: Reward_rule_configController.getList
     })
     public getList(requestParams: RequestParams): Observable<any> {
-        return requestParams.request()
-    }
-    /**
-     * 获取分院规则
-     */
-    @Request({
-        server: Reward_rule_configController.getBranchList
-    })
-    public getBranchList(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

@@ -17,12 +17,20 @@ export const DepartmentController = {
         action: 'getAll',
         type: RequestMethod.Get
     },
+    // 查询部门的所有子部门(包含自己)
+    getAllChildrenById: {
+        service,
+        controller,
+        path: '/api/department/getAllChildrenById/{id}',
+        action: 'getAllChildrenById',
+        type: RequestMethod.Get
+    },
     // 查询钉钉的所有部门
-    getAllWx: {
+    getAllFromDingTalk: {
         service,
         controller,
         path: '/api/department/getAllFromDingTalk',
-        action: 'getAllWx',
+        action: 'getAllFromDingTalk',
         type: RequestMethod.Get
     },
     // 查询所有分院
@@ -39,6 +47,14 @@ export const DepartmentController = {
         controller,
         path: '/api/department/getChildrenById/{id}',
         action: 'getChildrenById',
+        type: RequestMethod.Get
+    },
+    // 查询部门详情
+    getDepartmentById: {
+        service,
+        controller,
+        path: '/api/department/getDepartmentById/{id}',
+        action: 'getDepartmentById',
         type: RequestMethod.Get
     },
     // 查询部分

@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { DepartmentController } from '../../controller/dingtalk-service/department.controller'
 
 export class DepartmentService {
@@ -17,12 +17,21 @@ export class DepartmentService {
         return requestParams.request()
     }
     /**
+     * 查询部门的所有子部门(包含自己)
+     */
+    @Request({
+        server: DepartmentController.getAllChildrenById
+    })
+    public getAllChildrenById(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * 查询钉钉的所有部门
      */
     @Request({
-        server: DepartmentController.getAllWx
+        server: DepartmentController.getAllFromDingTalk
     })
-    public getAllWx(requestParams: RequestParams): Observable<any> {
+    public getAllFromDingTalk(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**
@@ -41,6 +50,15 @@ export class DepartmentService {
         server: DepartmentController.getChildrenById
     })
     public getChildrenById(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 查询部门详情
+     */
+    @Request({
+        server: DepartmentController.getDepartmentById
+    })
+    public getDepartmentById(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { ProcessInstanceController } from '../../controller/dingtalk-service/process-instance.controller'
 
 export class ProcessInstanceService {

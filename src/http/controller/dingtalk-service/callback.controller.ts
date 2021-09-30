@@ -16,5 +16,13 @@ export const CallbackController = {
         path: '/api/callback/1129547021',
         action: 'callback',
         type: RequestMethod.Post
+    },
+    // callbackLocal
+    callbackLocal: {
+        service,
+        controller,
+        path: '/api/callback/1206587818',
+        action: 'callbackLocal',
+        type: RequestMethod.Post
     }
 }

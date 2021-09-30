@@ -33,13 +33,21 @@ export const EmployeeBasicInfoController = {
         action: 'getById',
         type: RequestMethod.Get
     },
+    // 导入个税专项扣除
+    importDeduction: {
+        service,
+        controller,
+        path: '/api/employeeBasicInfo/importDeduction',
+        action: 'importDeduction',
+        type: RequestMethod.Get
+    },
     // 分页查询
     query: {
         service,
         controller,
         path: '/api/employeeBasicInfo/query',
         action: 'query',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // 同步员工基础信息
     syncAllEmployeeBasicInfo: {

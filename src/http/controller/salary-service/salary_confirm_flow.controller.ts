@@ -41,7 +41,15 @@ export const Salary_confirm_flowController = {
         action: 'getAllConfirm',
         type: RequestMethod.Get
     },
-    // 我的流程规则
+    // 审批流程明细
+    getCurrentSalaryConfirmFlow: {
+        service,
+        controller,
+        path: '/api/salary_confirm_flow/getCurrentSalaryConfirmFlowList',
+        action: 'getCurrentSalaryConfirmFlow',
+        type: RequestMethod.Get
+    },
+    // 我的流程规则列表
     getMyFlowConfig: {
         service,
         controller,
@@ -49,7 +57,7 @@ export const Salary_confirm_flowController = {
         action: 'getMyFlowConfig',
         type: RequestMethod.Get
     },
-    // 我的审批流程
+    // 我的审批列表
     getMySalaryConfirmFlow: {
         service,
         controller,

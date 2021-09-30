@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { AttendanceRuleConfigController } from '../../controller/salary-service/attendance-rule-config.controller'
 
 export class AttendanceRuleConfigService {

@@ -25,7 +25,7 @@ export const Reward_rule_configController = {
         action: 'delete',
         type: RequestMethod.Delete
     },
-    // 所有奖励规则
+    // 服务端奖励规则
     getAll: {
         service,
         controller,
@@ -41,20 +41,12 @@ export const Reward_rule_configController = {
         action: 'getById',
         type: RequestMethod.Get
     },
-    // 所有奖励规则
+    // 小程序奖励规则
     getList: {
         service,
         controller,
         path: '/api/reward_rule_config/getList',
         action: 'getList',
-        type: RequestMethod.Get
-    },
-    // 获取分院规则
-    getBranchList: {
-        service,
-        controller,
-        path: '/api/reward_rule_config/getListByBranch',
-        action: 'getBranchList',
         type: RequestMethod.Get
     },
     // update

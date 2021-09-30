@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { Inner_rewardController } from '../../controller/salary-service/inner_reward.controller'
 
 export class Inner_rewardService {
@@ -53,6 +53,15 @@ export class Inner_rewardService {
         return requestParams.request()
     }
     /**
+     * 导出待审批
+     */
+    @Request({
+        server: Inner_rewardController.exportTodo
+    })
+    public exportTodo(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * get All
      */
     @Request({
@@ -62,7 +71,7 @@ export class Inner_rewardService {
         return requestParams.request()
     }
     /**
-     * 审批历史列表
+     * 审批历史
      */
     @Request({
         server: Inner_rewardController.getAuditList
@@ -80,6 +89,15 @@ export class Inner_rewardService {
         return requestParams.request()
     }
     /**
+     * 审批内容
+     */
+    @Request({
+        server: Inner_rewardController.getAllConfirm
+    })
+    public getAllConfirm(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * get List
      */
     @Request({
@@ -89,12 +107,30 @@ export class Inner_rewardService {
         return requestParams.request()
     }
     /**
+     * 我的流程规则
+     */
+    @Request({
+        server: Inner_rewardController.getMyFlowConfig
+    })
+    public getMyFlowConfig(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * 我的所有申请
      */
     @Request({
         server: Inner_rewardController.getMyList
     })
     public getMyList(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 我的审批流程
+     */
+    @Request({
+        server: Inner_rewardController.getMySalaryConfirmFlow
+    })
+    public getMySalaryConfirmFlow(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

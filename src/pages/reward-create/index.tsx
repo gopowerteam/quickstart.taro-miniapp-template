@@ -1,9 +1,8 @@
-import React, { Component, useEffect, useState } from 'react'
-import { View, Text, Picker } from '@tarojs/components'
+import React, { useEffect, useState } from 'react'
+import { View, Picker } from '@tarojs/components'
 import {
     AtButton,
     AtCard,
-    AtForm,
     AtImagePicker,
     AtInput,
     AtList,
@@ -20,7 +19,7 @@ import { Reward_rule_configService } from '@/http/services/salary-service/reward
 import { RequestParams } from '@gopowerteam/http-request'
 import { Inner_rewardService } from '@/http/services/salary-service/inner_reward.service'
 import Router from 'tarojs-router-next'
-import { DeptStore } from '@/store/dept.store'
+// import { DeptStore } from '@/store/dept.store'
 import { appConfig } from '@/config/app.config'
 import Taro from '@tarojs/taro'
 
@@ -34,9 +33,9 @@ const rewardRuleConfigService = new Reward_rule_configService()
 const innerRewardService = new Inner_rewardService()
 
 export default () => {
-    const userStore = useStore(UserStore)
-    const deptStore = useStore(DeptStore)
-    const user = userStore.current as any
+    // const userStore = useStore(UserStore)
+    // const deptStore = useStore(DeptStore)
+    // const user = userStore.current as any
     const [ruleTypes, setRuleTypes] = useState<any[]>([])
     const [date, setDate] = useState({ year: '', month: '' })
     const [model, setModel] = useState({
@@ -48,7 +47,8 @@ export default () => {
         clientDeal: false,
         rewardRuleId: '',
         rewardRuleName: '',
-        rewardRuleType: '',
+        rewardRuleType: '' as any,
+        rewardRuleDescription: '',
         memo: '',
         accompanyName: '',
         department: '',
@@ -61,7 +61,30 @@ export default () => {
     const departments = ['综合科', '种植科', '儿牙科', '护理部', '正畸科']
 
     const onSubmit = () => {
-        Taro.showLoading()
+        if (!date.year || !date.month) {
+            return Taro.showToast({
+                title: '请填写日期信息'
+            })
+        }
+
+        if (!model.rewardRuleType) {
+            return Taro.showToast({
+                title: '请选择奖励类型'
+            })
+        }
+
+        if (
+            !model.clientName ||
+            !model.clientPhone ||
+            !model.clientResumeNo ||
+            !model.amount
+        ) {
+            return Taro.showToast({
+                title: '请填写客户相关信息'
+            })
+        }
+
+        // Taro.showLoading()
         innerRewardService
             .create(
                 new RequestParams({
@@ -76,7 +99,7 @@ export default () => {
                     Router.back()
                 },
                 complete: () => {
-                    Taro.hideLoading()
+                    // Taro.hideLoading()
                 }
             })
     }
@@ -96,14 +119,9 @@ export default () => {
     }
 
     const getRules = () => {
-        rewardRuleConfigService
-            .getBranchList(new RequestParams())
-            .subscribe(data => {
-                setRuleTypes(data)
-                if (data && data.length) {
-                    const [rule] = data
-                }
-            })
+        rewardRuleConfigService.getList(new RequestParams()).subscribe(data => {
+            setRuleTypes(data.filter(x => x.enabled && x.ruleType))
+        })
     }
 
     useEffect(() => {
@@ -141,7 +159,10 @@ export default () => {
                                     rewardRuleId: ruleTypes[detail.value].id,
                                     rewardRuleName:
                                         ruleTypes[detail.value].name,
-                                    rewardRuleType: ruleTypes[detail.value].type
+                                    rewardRuleType:
+                                        ruleTypes[detail.value].ruleType,
+                                    rewardRuleDescription:
+                                        ruleTypes[detail.value].description
                                 })
                             }}
                         >
@@ -149,6 +170,9 @@ export default () => {
                                 title="奖励类型"
                                 extraText={model.rewardRuleName}
                             />
+                            <View className="reward-rule-description">
+                                {model.rewardRuleDescription}
+                            </View>
                         </Picker>
                     </AtList>
                 </AtCard>
@@ -196,7 +220,8 @@ export default () => {
                             })
                         }}
                     />
-                    {model.rewardRuleType === '陪伴人开发' && (
+                    {/** 陪人开发 **/}
+                    {model.rewardRuleType?.id === '1000000' && (
                         <AtInput
                             name="accompanyName"
                             title="陪同患者"
@@ -210,7 +235,8 @@ export default () => {
                             }}
                         />
                     )}
-                    {model.rewardRuleType === '员工转介绍' && (
+                    {/** 员工转介绍 **/}
+                    {model.rewardRuleType?.id === '1000001' && (
                         <Picker
                             mode="selector"
                             range={departments}
@@ -226,7 +252,7 @@ export default () => {
                             />
                         </Picker>
                     )}
-                    {model.rewardRuleType === '转诊' && (
+                    {/* {model.rewardRuleType === '转诊' && (
                         <Picker
                             mode="selector"
                             range={departments}
@@ -272,8 +298,9 @@ export default () => {
                                 })
                             }}
                         />
-                    )}
-                    {model.rewardRuleType === '会员卡充值' && (
+                    )} */}
+                    {/** 会员卡充值 **/}
+                    {model.rewardRuleType?.id === '1000002' && (
                         <AtInput
                             name="cardType"
                             title="会员卡类型"

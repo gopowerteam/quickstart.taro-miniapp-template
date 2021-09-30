@@ -9,13 +9,21 @@ const controller = 'report'
 const service = 'xbt-platform-salary-service'
 
 export const ReportController = {
+    // 导出列表
+    exportAnalysis: {
+        service,
+        controller,
+        path: '/api/report/exportAnalysis',
+        action: 'exportAnalysis',
+        type: RequestMethod.Post
+    },
     // 导出审批记录
     exportAudit: {
         service,
         controller,
         path: '/api/report/exportAudit',
         action: 'exportAudit',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // 导出列表
     exportDetail: {
@@ -23,7 +31,7 @@ export const ReportController = {
         controller,
         path: '/api/report/exportDetail',
         action: 'exportDetail',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // 导出个人总计
     exportEmployeeSummary: {
@@ -31,7 +39,7 @@ export const ReportController = {
         controller,
         path: '/api/report/exportEmployeeSummary',
         action: 'exportEmployeeSummary',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // 部门总计
     query: {
@@ -39,6 +47,6 @@ export const ReportController = {
         controller,
         path: '/api/report/querySummary',
         action: 'query',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     }
 }

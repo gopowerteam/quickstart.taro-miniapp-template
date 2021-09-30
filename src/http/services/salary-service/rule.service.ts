@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { RuleController } from '../../controller/salary-service/rule.controller'
 
 export class RuleService {
@@ -26,6 +26,15 @@ export class RuleService {
         return requestParams.request()
     }
     /**
+     * 复制规则
+     */
+    @Request({
+        server: RuleController.duplicateForAllBranch
+    })
+    public duplicateForAllBranch(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * get All
      */
     @Request({
@@ -35,12 +44,39 @@ export class RuleService {
         return requestParams.request()
     }
     /**
+     * getAllByRole
+     */
+    @Request({
+        server: RuleController.getAllByRole
+    })
+    public getAllByRole(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 查询所有分院
+     */
+    @Request({
+        server: RuleController.getBranches
+    })
+    public getBranches(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
      * findOne
      */
     @Request({
         server: RuleController.get
     })
     public get(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * getCorpRoleList
+     */
+    @Request({
+        server: RuleController.getCorpRoleList
+    })
+    public getCorpRoleList(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

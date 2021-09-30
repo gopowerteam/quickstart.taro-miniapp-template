@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { CallbackController } from '../../controller/dingtalk-service/callback.controller'
 
 export class CallbackService {
@@ -14,6 +14,15 @@ export class CallbackService {
         server: CallbackController.callback
     })
     public callback(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * callbackLocal
+     */
+    @Request({
+        server: CallbackController.callbackLocal
+    })
+    public callbackLocal(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

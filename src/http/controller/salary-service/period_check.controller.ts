@@ -15,7 +15,7 @@ export const Period_checkController = {
         controller,
         path: '/api/period_check/getAll',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne by employee
     getByEmployee: {

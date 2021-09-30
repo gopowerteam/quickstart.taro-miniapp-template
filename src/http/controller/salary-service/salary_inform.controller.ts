@@ -31,7 +31,7 @@ export const Salary_informController = {
         controller,
         path: '/api/salary_inform/informList',
         action: 'informList',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // 单人下发
     inform: {

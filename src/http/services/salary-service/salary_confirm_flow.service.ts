@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { Salary_confirm_flowController } from '../../controller/salary-service/salary_confirm_flow.controller'
 
 export class Salary_confirm_flowService {
@@ -44,7 +44,16 @@ export class Salary_confirm_flowService {
         return requestParams.request()
     }
     /**
-     * 我的流程规则
+     * 审批流程明细
+     */
+    @Request({
+        server: Salary_confirm_flowController.getCurrentSalaryConfirmFlow
+    })
+    public getCurrentSalaryConfirmFlow(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 我的流程规则列表
      */
     @Request({
         server: Salary_confirm_flowController.getMyFlowConfig
@@ -53,7 +62,7 @@ export class Salary_confirm_flowService {
         return requestParams.request()
     }
     /**
-     * 我的审批流程
+     * 我的审批列表
      */
     @Request({
         server: Salary_confirm_flowController.getMySalaryConfirmFlow

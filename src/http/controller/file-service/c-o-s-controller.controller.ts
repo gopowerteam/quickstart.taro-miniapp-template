@@ -48,5 +48,13 @@ export const COSControllerController = {
         path: '/api/COSController/generatePresignedUrl/{bucketName}/{objectKey}',
         action: 'generatePresignedUrl',
         type: RequestMethod.Get
+    },
+    // uploadToDefaultPrivate
+    uploadToDefaultPrivate: {
+        service,
+        controller,
+        path: '/api/COSController/uploadToDefaultPrivate',
+        action: 'uploadToDefaultPrivate',
+        type: RequestMethod.Post
     }
 }

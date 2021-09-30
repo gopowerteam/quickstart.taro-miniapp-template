@@ -25,6 +25,14 @@ export const RuleController = {
         action: 'delete',
         type: RequestMethod.Delete
     },
+    // 复制规则
+    duplicateForAllBranch: {
+        service,
+        controller,
+        path: '/api/rule/duplicateForAllBranch',
+        action: 'duplicateForAllBranch',
+        type: RequestMethod.Post
+    },
     // get All
     getAll: {
         service,
@@ -33,12 +41,36 @@ export const RuleController = {
         action: 'getAll',
         type: RequestMethod.Get
     },
+    // getAllByRole
+    getAllByRole: {
+        service,
+        controller,
+        path: '/api/rule/getAllByRole',
+        action: 'getAllByRole',
+        type: RequestMethod.Get
+    },
+    // 查询所有分院
+    getBranches: {
+        service,
+        controller,
+        path: '/api/rule/getBranches',
+        action: 'getBranches',
+        type: RequestMethod.Get
+    },
     // findOne
     get: {
         service,
         controller,
         path: '/api/rule/getById/{id}',
         action: 'get',
+        type: RequestMethod.Get
+    },
+    // getCorpRoleList
+    getCorpRoleList: {
+        service,
+        controller,
+        path: '/api/rule/getCorpRoleList',
+        action: 'getCorpRoleList',
         type: RequestMethod.Get
     },
     // get List

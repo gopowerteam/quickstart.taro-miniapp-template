@@ -15,7 +15,7 @@ export const Social_securityController = {
         controller,
         path: '/api/social_security/export',
         action: 'export',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // get All
     getAll: {
@@ -23,7 +23,7 @@ export const Social_securityController = {
         controller,
         path: '/api/social_security/getAll',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne
     get: {

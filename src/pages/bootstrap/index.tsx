@@ -9,14 +9,13 @@ import { AuthService } from '@/http/services/dingtalk-service/auth.service'
 import { RequestParams } from '@gopowerteam/http-request'
 import { appConfig } from '@/config/app.config'
 import { UserStore } from '../../store/user.store'
-import { catchError, switchMap, tap } from 'rxjs/operators'
+import { catchError, switchMap } from 'rxjs/operators'
 import { EmployeeService } from '../../http/services/dingtalk-service/employee.service'
 import { DepartmentService } from '../../http/services/dingtalk-service/department.service'
 import { DeptStore } from '../../store/dept.store'
-import { AtMessage } from 'taro-ui'
+import { AtMessage, AtActivityIndicator } from 'taro-ui'
 import Taro, { getCurrentInstance } from '@tarojs/taro'
 import { lastValueFrom, from, EMPTY } from 'rxjs'
-import { AtActivityIndicator } from 'taro-ui'
 import Router, { NavigateType } from 'tarojs-router-next'
 
 const authService = new AuthService()
@@ -47,37 +46,12 @@ export default props => {
                 )
             )
 
-        const replaceUserID = id => {
-            const target = {
-                '021926232927258548': '1864100214788174',
-                '316469192621613595': '111629236737878375',
-                '044837536726236323': '1864100214788174'
-            }[id]
-
-            return target || id
-        }
         // 通过用户id获取用户数据
         const getUserInfoById = userid =>
             employeeService.getById(
-                new RequestParams(
-                    {},
-                    { append: { id: userid } }
-                    // { append: { id: replaceUserID(userid) } }
-                )
+                new RequestParams({}, { append: { id: userid } })
             )
 
-        // try {
-        //     const { authCode } = await dd.getAuthCode()
-        //     const { userid } = await getUserIdByCode(authCode).toPromise()
-        //     const userData = await getUserInfoById(userid).toPromise()
-        //     console.log(userData)
-        //     userStore.setCurrent(userData)
-        // } catch (ex) {
-        //     Taro.showToast({
-        //         title: JSON.stringify(ex),
-        //         duration: 5000
-        //     })
-        // }
         return lastValueFrom(
             from(dd.getAuthCode() as Promise<any>).pipe(
                 switchMap(({ authCode }) => getUserIdByCode(authCode)),

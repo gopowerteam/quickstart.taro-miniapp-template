@@ -15,7 +15,7 @@ export const TaxController = {
         controller,
         path: '/api/tax/export',
         action: 'export',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // get All
     getAll: {
@@ -23,7 +23,7 @@ export const TaxController = {
         controller,
         path: '/api/tax/getAll',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne
     get: {

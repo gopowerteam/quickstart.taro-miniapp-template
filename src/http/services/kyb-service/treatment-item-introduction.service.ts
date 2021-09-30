@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { TreatmentItemIntroductionController } from '../../controller/kyb-service/treatment-item-introduction.controller'
 
 export class TreatmentItemIntroductionService {

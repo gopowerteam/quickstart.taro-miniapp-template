@@ -53,6 +53,28 @@ export default () => {
         })
     }
 
+    const onDelete = id => {
+        Taro.showModal({
+            title: '提醒',
+            content: '是否删除该申报信息',
+            success: res => {
+                if (!res.confirm) {
+                    return
+                }
+
+                innerRewardService
+                    .delete(new RequestParams({}, { append: { id } }))
+                    .subscribe({
+                        next: data => {
+                            // 更新数据源
+                            getDataSource()
+                        },
+                        error: err => {}
+                    })
+            }
+        })
+    }
+
     const onSubmit = id => {
         innerRewardService
             .apply(new RequestParams({}, { append: { id } }))
@@ -92,6 +114,7 @@ export default () => {
                     Object.entries(groupBy(list, 'month')).map(
                         ([key, values]) => (
                             <AtAccordion
+                                key={key}
                                 open={openState[key]}
                                 onClick={() => onChangeOpen(key)}
                                 isAnimation={false}
@@ -99,6 +122,7 @@ export default () => {
                             >
                                 {values.map(item => (
                                     <AtList
+                                        key={item.id}
                                         hasBorder
                                         className="my-2 border border-solid rounded"
                                     >
@@ -127,16 +151,28 @@ export default () => {
                                             extraText={`${item.reward / 100}元`}
                                         />
                                         {segment === 0 && (
-                                            <AtButton
-                                                size="small"
-                                                className="my-1"
-                                                type="primary"
-                                                onClick={() =>
-                                                    onSubmit(item.id)
-                                                }
-                                            >
-                                                申报
-                                            </AtButton>
+                                            <>
+                                                <AtButton
+                                                    size="small"
+                                                    className="my-1"
+                                                    type="primary"
+                                                    onClick={() =>
+                                                        onSubmit(item.id)
+                                                    }
+                                                >
+                                                    申报
+                                                </AtButton>
+                                                <AtButton
+                                                    size="small"
+                                                    className="my-1"
+                                                    type="secondary"
+                                                    onClick={() =>
+                                                        onDelete(item.id)
+                                                    }
+                                                >
+                                                    删除
+                                                </AtButton>
+                                            </>
                                         )}
                                     </AtList>
                                 ))}

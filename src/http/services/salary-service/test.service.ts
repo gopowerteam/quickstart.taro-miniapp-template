@@ -3,10 +3,28 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { TestController } from '../../controller/salary-service/test.controller'
 
 export class TestService {
+    /**
+     * 批量创建一个员工的多月工资条
+     */
+    @Request({
+        server: TestController.batchCreateSalaryValue
+    })
+    public batchCreateSalaryValue(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 按月返导入
+     */
+    @Request({
+        server: TestController.monthBonusLocalFileImport
+    })
+    public monthBonusLocalFileImport(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
     /**
      * 测试分配团队
      */

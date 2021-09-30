@@ -49,6 +49,14 @@ export const Inner_rewardController = {
         action: 'deny',
         type: RequestMethod.Post
     },
+    // 导出待审批
+    exportTodo: {
+        service,
+        controller,
+        path: '/api/inner_reward/exportTodo',
+        action: 'exportTodo',
+        type: RequestMethod.Get
+    },
     // get All
     getAll: {
         service,
@@ -57,11 +65,11 @@ export const Inner_rewardController = {
         action: 'getAll',
         type: RequestMethod.Get
     },
-    // 审批历史列表
+    // 审批历史
     getAuditList: {
         service,
         controller,
-        path: '/api/inner_reward/getAuditList/{id}',
+        path: '/api/inner_reward/getAuditList/{id}/{fingerPrint}',
         action: 'getAuditList',
         type: RequestMethod.Get
     },
@@ -73,6 +81,14 @@ export const Inner_rewardController = {
         action: 'get',
         type: RequestMethod.Get
     },
+    // 审批内容
+    getAllConfirm: {
+        service,
+        controller,
+        path: '/api/inner_reward/getEmployeeInnerReward/{id}',
+        action: 'getAllConfirm',
+        type: RequestMethod.Get
+    },
     // get List
     getList: {
         service,
@@ -81,12 +97,28 @@ export const Inner_rewardController = {
         action: 'getList',
         type: RequestMethod.Get
     },
+    // 我的流程规则
+    getMyFlowConfig: {
+        service,
+        controller,
+        path: '/api/inner_reward/getMyFlowConfig',
+        action: 'getMyFlowConfig',
+        type: RequestMethod.Get
+    },
     // 我的所有申请
     getMyList: {
         service,
         controller,
         path: '/api/inner_reward/getMyList',
         action: 'getMyList',
+        type: RequestMethod.Get
+    },
+    // 我的审批流程
+    getMySalaryConfirmFlow: {
+        service,
+        controller,
+        path: '/api/inner_reward/getMySalaryConfirmFlow',
+        action: 'getMySalaryConfirmFlow',
         type: RequestMethod.Get
     },
     // update

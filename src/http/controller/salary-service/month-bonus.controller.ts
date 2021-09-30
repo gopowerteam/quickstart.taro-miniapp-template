@@ -24,5 +24,29 @@ export const MonthBonusController = {
         path: '/api/monthBonus/delete/{employeeId}/{performanceRuleId}',
         action: 'delete',
         type: RequestMethod.Delete
+    },
+    // getDetail
+    getDetail: {
+        service,
+        controller,
+        path: '/api/monthBonus/getDetail',
+        action: 'getDetail',
+        type: RequestMethod.Post
+    },
+    // import excel
+    import: {
+        service,
+        controller,
+        path: '/api/monthBonus/importHistory',
+        action: 'import',
+        type: RequestMethod.Get
+    },
+    // updateDomain
+    updateDomain: {
+        service,
+        controller,
+        path: '/api/monthBonus/updateDomain',
+        action: 'updateDomain',
+        type: RequestMethod.Get
     }
 }

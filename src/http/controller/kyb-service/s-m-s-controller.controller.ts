@@ -10,11 +10,11 @@ const service = 'xbt-platform-kyb-service'
 
 export const SMSControllerController = {
     // 发送一个后台不验证的验证码
-    orderRefund: {
+    sendSMSCode: {
         service,
         controller,
         path: '/api/SMSController/sendSMSCode/{phone}',
-        action: 'orderRefund',
+        action: 'sendSMSCode',
         type: RequestMethod.Post
     }
 }

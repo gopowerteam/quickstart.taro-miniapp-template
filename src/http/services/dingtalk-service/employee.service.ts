@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { EmployeeController } from '../../controller/dingtalk-service/employee.controller'
 
 export class EmployeeService {
@@ -71,12 +71,84 @@ export class EmployeeService {
         return requestParams.request()
     }
     /**
-     * 同步全部员工
+     * 使用ID查询数据库中的同步员工和他所在的所有父部门
      */
     @Request({
-        server: EmployeeController.syncAllEmployee
+        server: EmployeeController.getLocalByIdAndAllDepartment
     })
-    public syncAllEmployee(requestParams: RequestParams): Observable<any> {
+    public getLocalByIdAndAllDepartment(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 使用部门ID查询员工列表包含子部门
+     */
+    @Request({
+        server: EmployeeController.getLocalEmployeesByDepartmentId
+    })
+    public getLocalEmployeesByDepartmentId(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 测试查看下一个工号
+     */
+    @Request({
+        server: EmployeeController.getNextJobNumber
+    })
+    public getNextJobNumber(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 重新初始化所有员工的工号
+     */
+    @Request({
+        server: EmployeeController.initAllJobNumber
+    })
+    public initAllJobNumber(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 通过姓名查询员工
+     */
+    @Request({
+        server: EmployeeController.queryByName
+    })
+    public queryByName(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 使用部门ID查询员工列表包含子部门
+     */
+    @Request({
+        server: EmployeeController.queryEmployee
+    })
+    public queryEmployee(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 通过部门列表查询员工
+     */
+    @Request({
+        server: EmployeeController.queryEmployeesByeDepartments
+    })
+    public queryEmployeesByeDepartments(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 重新生成员工工号（累加）
+     */
+    @Request({
+        server: EmployeeController.reSetJobNumber
+    })
+    public reSetJobNumber(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 设置工号
+     */
+    @Request({
+        server: EmployeeController.setJobNumber
+    })
+    public setJobNumber(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

@@ -31,7 +31,7 @@ export const EmployeesalaryController = {
         controller,
         path: '/api/employeesalary/getAll',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne
     getByEmployee: {

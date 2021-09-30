@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { Test/example/jsonController } from '../../controller/salary-service/test/example/json.controller'
 
 export class Test/example/jsonService {

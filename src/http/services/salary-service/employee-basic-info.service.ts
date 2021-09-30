@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { EmployeeBasicInfoController } from '../../controller/salary-service/employee-basic-info.controller'
 
 export class EmployeeBasicInfoService {
@@ -32,6 +32,15 @@ export class EmployeeBasicInfoService {
         server: EmployeeBasicInfoController.getById
     })
     public getById(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 导入个税专项扣除
+     */
+    @Request({
+        server: EmployeeBasicInfoController.importDeduction
+    })
+    public importDeduction(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
     /**

@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { COSControllerController } from '../../controller/file-service/c-o-s-controller.controller'
 
 export class COSControllerService {
@@ -50,6 +50,15 @@ export class COSControllerService {
         server: COSControllerController.generatePresignedUrl
     })
     public generatePresignedUrl(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * uploadToDefaultPrivate
+     */
+    @Request({
+        server: COSControllerController.uploadToDefaultPrivate
+    })
+    public uploadToDefaultPrivate(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

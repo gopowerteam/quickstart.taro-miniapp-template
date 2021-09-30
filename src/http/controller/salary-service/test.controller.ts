@@ -9,6 +9,22 @@ const controller = 'test'
 const service = 'xbt-platform-salary-service'
 
 export const TestController = {
+    // 批量创建一个员工的多月工资条
+    batchCreateSalaryValue: {
+        service,
+        controller,
+        path: '/api/test/batchCreateSalaryValue',
+        action: 'batchCreateSalaryValue',
+        type: RequestMethod.Post
+    },
+    // 按月返导入
+    monthBonusLocalFileImport: {
+        service,
+        controller,
+        path: '/api/test/monthBonusLocalFileImport/{path}',
+        action: 'monthBonusLocalFileImport',
+        type: RequestMethod.Get
+    },
     // 测试分配团队
     update: {
         service,

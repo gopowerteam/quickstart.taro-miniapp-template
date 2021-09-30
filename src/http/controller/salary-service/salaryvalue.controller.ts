@@ -33,13 +33,29 @@ export const SalaryvalueController = {
         action: 'create',
         type: RequestMethod.Get
     },
+    // create for team
+    create4team: {
+        service,
+        controller,
+        path: '/api/salaryvalue/create4team/{teamId}/{month}',
+        action: 'create4team',
+        type: RequestMethod.Get
+    },
+    // create for rules
+    createForRules: {
+        service,
+        controller,
+        path: '/api/salaryvalue/createForRules',
+        action: 'createForRules',
+        type: RequestMethod.Post
+    },
     // 核算列表
     getAll: {
         service,
         controller,
         path: '/api/salaryvalue/getAllSalaryValue',
         action: 'getAll',
-        type: RequestMethod.Get
+        type: RequestMethod.Post
     },
     // findOne
     getByEmployee: {
@@ -72,6 +88,14 @@ export const SalaryvalueController = {
         path: '/api/salaryvalue/mySalaryList',
         action: 'mySalaryList',
         type: RequestMethod.Get
+    },
+    // specify
+    specify: {
+        service,
+        controller,
+        path: '/api/salaryvalue/specify',
+        action: 'specify',
+        type: RequestMethod.Post
     },
     // update
     update: {

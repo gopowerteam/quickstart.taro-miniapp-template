@@ -3,7 +3,7 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { AuthController } from '../../controller/dingtalk-service/auth.controller'
 
 export class AuthService {
@@ -32,6 +32,15 @@ export class AuthService {
         server: AuthController.loginByCode
     })
     public loginByCode(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
+    /**
+     * 钉钉SNS扫码登录
+     */
+    @Request({
+        server: AuthController.loginBySnsCode
+    })
+    public loginBySnsCode(requestParams: RequestParams): Observable<any> {
         return requestParams.request()
     }
 }

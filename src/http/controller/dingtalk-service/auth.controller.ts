@@ -32,5 +32,13 @@ export const AuthController = {
         path: '/api/auth/loginByAuthCode/{agentId}/{code}',
         action: 'loginByCode',
         type: RequestMethod.Get
+    },
+    // 钉钉SNS扫码登录
+    loginBySnsCode: {
+        service,
+        controller,
+        path: '/api/auth/loginBySnsCode/{agentId}/{code}',
+        action: 'loginBySnsCode',
+        type: RequestMethod.Get
     }
 }

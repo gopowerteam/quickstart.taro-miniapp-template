@@ -3,10 +3,19 @@
  * Do not edit.
  */
 import { Request, RequestParams } from '@gopowerteam/http-request'
-import { Observable } from 'rxjs'
+import type { Observable } from 'rxjs'
 import { ReportController } from '../../controller/salary-service/report.controller'
 
 export class ReportService {
+    /**
+     * 导出列表
+     */
+    @Request({
+        server: ReportController.exportAnalysis
+    })
+    public exportAnalysis(requestParams: RequestParams): Observable<any> {
+        return requestParams.request()
+    }
     /**
      * 导出审批记录
      */
