@@ -1,16 +1,10 @@
-<template>
-  <div class="index">
-    <div>
-      <img src="" alt="" />
-    </div>
-    {{ msg }}
-    <div class="btn p-10">
-      <nut-button type="primary" @click="handleClick('text', msg2)"
-        >点我</nut-button
-      >
-    </div>
-    <nut-toast :msg="msg" v-model:visible="show" :type="type" :cover="cover" />
-  </div>
+<template lang="pug">
+.index
+  div
+    img(src="" alt="")
+    .msg {{ msg }}
+    nut-button(type="primary" @click="handleClick('text', msg2)") 点我
+    nut-toast(:msg="msg" v-model:visible="show" :type="type" :cover="cover")
 </template>
 
 <script setup lang="ts">

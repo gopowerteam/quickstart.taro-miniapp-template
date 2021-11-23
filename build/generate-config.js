@@ -18,7 +18,7 @@ function generatePages(pages) {
       return stat.isDirectory()
     })
     .forEach(function(page) {
-      pages.push(`/pages/${page}/index`)
+      pages.push(`pages/${page}/index`)
     })
 }
 
